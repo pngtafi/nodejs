@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import bodyParser from 'body-parser'
 import ViewEngine from './config/viewEngine.js'
 import initWebRoutes from './routes/web.js'
+import { connectDB } from './config/connectDB.js'
 
 // --- Đọc biến môi trường từ file .env ---
 dotenv.config()
@@ -20,6 +21,9 @@ ViewEngine(app)
 
 // --- Khai báo các route web ---
 initWebRoutes(app)
+
+// Kiểm tra kết nối DB trước khi chạy server
+connectDB()
 
 // --- Khởi động server ---
 app.listen(PORT, () => {
